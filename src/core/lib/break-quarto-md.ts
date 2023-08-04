@@ -29,10 +29,13 @@ export async function breakQuartoMd(
   validate = false,
   lenient = false,
 ) {
+  // Remove HTML comments & ensure src is a mapped string
   if (typeof src === "string") {
-    src = asMappedString(src);
+    src = asMappedString(src.replace(/<!--[\s\S]*?-->/g, ""));
+  } else {
+    src = asMappedString(src.value.replace(/<!--[\s\S]*?-->/g, ""));
   }
-
+  
   // notebook to return
   const nb: QuartoMdChunks = {
     cells: [],
