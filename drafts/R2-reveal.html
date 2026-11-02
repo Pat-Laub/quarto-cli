@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>A lazy-loaded r-stretch image stays at height 0</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/theme/white.css">
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2>1</h2>
+				<p><a href="#/4">Jump to slide 5</a>: its image never appears.</p>
+			</section>
+			<section><h2>2</h2></section>
+			<section><h2>3</h2></section>
+			<section><h2>4</h2></section>
+			<section>
+				<h2>5</h2>
+				<img class="r-stretch" data-src="figure.png">
+			</section>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.js"></script>
+	<script>
+		Reveal.initialize({ hash: true, viewDistance: 2 });
+	</script>
+</body>
+</html>

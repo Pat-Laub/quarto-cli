@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# fresh-render <qmd>... : render after deleting the document's _files dir, so
+# the bundled libraries are copied from the current share/ (Quarto only copies
+# a library file when the source is newer than the copy already there).
+export PATH=/home/user/bin:$PATH
+for f in "$@"; do
+  rm -rf "${f%.qmd}_files"
+  (cd "$(dirname "$f")" && quarto render "$(basename "$f")" >/tmp/fresh-render.log 2>&1) || { echo "RENDER FAILED: $f"; tail -5 /tmp/fresh-render.log; }
+done

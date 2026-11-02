@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# overlay <repo> : copy every file under src/resources that differs from the
+# repo's upstream/main into the installed Quarto's share/ directory, keeping a
+# pristine copy of share/ to restore from.  overlay --restore : undo.
+set -euo pipefail
+SHARE=/home/user/dl/quarto-1.12.0/share
+PRISTINE=/home/user/dl/share-pristine
+[ -d "$PRISTINE" ] || cp -a "$SHARE" "$PRISTINE"
+rm -rf "$SHARE" && cp -a "$PRISTINE" "$SHARE"
+[ "${1:-}" = "--restore" ] && { echo "restored pristine share/"; exit 0; }
+cd "$1"
+for f in $(git diff --name-only upstream/main -- src/resources; git ls-files --others --exclude-standard -- src/resources); do
+  rel=${f#src/resources/}
+  mkdir -p "$SHARE/$(dirname "$rel")"
+  cp "$f" "$SHARE/$rel"
+  echo "overlaid $rel"
+done

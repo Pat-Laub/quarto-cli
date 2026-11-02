@@ -1,0 +1,17 @@
+---
+title: "code-annotations: none"
+format:
+  revealjs: default
+code-annotations: none
+---
+
+## A slide
+
+Any deck (or `format: html` page) with `code-annotations: none` throws
+`ReferenceError: selectedAnnoteEl is not defined` every time the window is
+resized.
+
+```python
+x = 1  # <1>
+```
+1. An annotation that `none` hides.

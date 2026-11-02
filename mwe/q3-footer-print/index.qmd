@@ -1,0 +1,22 @@
+---
+title: "Footers in print view"
+format:
+  revealjs:
+    footer: "Deck-wide footer"
+---
+
+## Uses the deck footer
+
+Should print "Deck-wide footer".
+
+## Has its own footer
+
+Should print only "Slide's own footer".
+
+::: footer
+Slide's own footer
+:::
+
+## Turns the footer off {footer=false}
+
+Should print no footer.

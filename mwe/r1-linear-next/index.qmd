@@ -1,0 +1,22 @@
+---
+title: "Forward navigation skips slides"
+format: revealjs
+---
+
+# Section A
+
+## A.1 {#a1}
+
+## A.2 {#a2}
+
+# Section B {#sec-b}
+
+## B.1 {#b1}
+
+## B.2 {#b2}
+
+## B.3 {#b3}
+
+# Section C {#sec-c}
+
+## C.1 {#c1}

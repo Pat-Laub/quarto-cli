@@ -1,0 +1,23 @@
+---
+title: "Per-slide footer outlives its slide"
+format: revealjs
+---
+
+## First footed slide {#footed}
+
+This slide has its own footer.
+
+::: footer
+Footer for the first footed slide
+:::
+
+## A slide with no footer of its own {#plain}
+
+Open the deck at `#/footed`, then press the right arrow: the first slide's
+footer is still on screen here.
+
+## Second footed slide {#footed-2}
+
+::: footer
+Footer for the second footed slide
+:::

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>next() skips the top of a visited stack</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/theme/white.css">
+</head>
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section><h2>Start</h2><p>Press → to go to A.</p></section>
+			<section>
+				<h2>A</h2>
+				<p>Go to <a href="#/2/2">B.3</a>, come back here,<br>
+				then press → (or Space): you land on B.3, skipping B.1 and B.2.</p>
+			</section>
+			<section>
+				<section><h2>B.1</h2></section>
+				<section><h2>B.2</h2></section>
+				<section><h2>B.3</h2><p><a href="#/1">Back to A</a></p></section>
+			</section>
+			<section><h2>C</h2></section>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.2/dist/reveal.js"></script>
+	<script>
+		Reveal.initialize({ hash: true, navigationMode: 'linear' });
+	</script>
+</body>
+</html>

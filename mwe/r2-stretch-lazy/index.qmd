@@ -1,0 +1,20 @@
+---
+title: "A stretched image reached by a link has no height"
+format: revealjs
+---
+
+## Start here {#start}
+
+[Jump to the figure](#the-figure)
+
+## Filler 1
+
+## Filler 2
+
+## Filler 3
+
+## Filler 4
+
+## The figure {#the-figure}
+
+![](figure.png)
