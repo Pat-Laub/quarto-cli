@@ -28,6 +28,24 @@ changelog entry for Quarto).
 
 ## GitHub Actions
 
+### reveal.js: the fork's own `Tests` workflow (`npm test`, Node 22 and 24)
+
+`Tests` runs on every push, so each `ci/…` ref here points at an existing commit
+and adds nothing.
+
+| Ref | Commit | Result |
+|-----|--------|--------|
+| `ci/baseline` (= `master`) | `e240e17` | ✅ [success](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652078) |
+| `ci/test-only/fix-next-enters-stack-at-top` | `6adb066` (test only) | ❌ [failure](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652018): only `Reveal.next enters a vertical stack at its top` (2 of 2 assertions); 422/424 |
+| `ci/fixed/fix-next-enters-stack-at-top` | `5f044bb` | ✅ [success](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652237) |
+| `ci/test-only/fix-stretch-media-before-load` | `94003d3` (test only) | ❌ [failure](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652313): only `test-stretch.html` (3 of 4 assertions); 421/424 |
+| `fix-stretch-media-before-load` | `a68e27f` | ✅ [success](https://github.com/Pat-Laub/reveal.js/actions/runs/41547763426) |
+
+`test-mathjax4.html`, which failed in the sandbox for lack of CDN access, passes on
+GitHub (11/11).
+
+### quarto-cli
+
 *Runs in progress; this section is updated when they finish.*
 
 ## Priority list and reasoning
