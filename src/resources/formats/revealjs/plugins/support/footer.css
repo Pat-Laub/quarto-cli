@@ -108,3 +108,9 @@ html.print-pdf .reveal .slide-menu-button,
 html.print-pdf .reveal .slide-chalkboard-buttons {
   display: none;
 }
+
+/* In print view each page carries its own copy of its slide's footer (see
+   support.js), positioned on that page rather than fixed to the viewport. */
+html.print-pdf .reveal .pdf-page > .footer {
+  position: absolute;
+}

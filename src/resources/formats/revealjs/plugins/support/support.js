@@ -185,6 +185,37 @@ window.QuartoSupport = function () {
           // Set new one (custom, default or none)
           setSlideFooter(ev, defaultFooterDiv)
         });
+      } else {
+        // Print view lays every slide out on its own page at once, so give
+        // each page a copy of the footer its slide shows in the presentation.
+        // The default footer is `position: fixed`, which would otherwise be
+        // printed on every page.
+        deck.on("pdf-ready", () => {
+          const hasDefaultFooter = defaultFooterDiv.innerHTML.trim() !== "";
+          revealParent.querySelectorAll(".pdf-page").forEach((page) => {
+            const slide = page.querySelector("section");
+            if (!slide) return;
+            const slideFooter = slide.querySelector(".footer");
+            let footer;
+            if (slideFooter) {
+              footer = slideFooter.cloneNode(true);
+            } else if (hasDefaultFooter && slide.getAttribute("data-footer") !== "false") {
+              footer = defaultFooterDiv.cloneNode(true);
+              footer.classList.remove("footer-default");
+              footer.style.removeProperty("display");
+            } else {
+              return;
+            }
+            const background = page.querySelector(".slide-background");
+            toggleBackgroundTheme(
+              footer,
+              !!background && background.classList.contains("has-dark-background"),
+              !!background && background.classList.contains("has-light-background"),
+            );
+            page.appendChild(footer);
+          });
+          defaultFooterDiv.style.display = "none";
+        });
       }
     }
   }
