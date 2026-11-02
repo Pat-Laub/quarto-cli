@@ -1,0 +1,23 @@
+---
+title: "Stretched image reached by a link"
+format: revealjs
+# No math plugin: once MathJax has loaded it re-runs reveal.js's layout, which
+# sizes the image anyway whenever that happens after the image has loaded.
+html-math-method: plain
+---
+
+## Start {#start}
+
+[Go to the figure](#the-figure)
+
+## Filler 1
+
+## Filler 2
+
+## Filler 3
+
+## Filler 4
+
+## The figure {#the-figure}
+
+![](quarto.png)
