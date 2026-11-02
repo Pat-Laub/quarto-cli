@@ -146,6 +146,12 @@ window.QuartoSupport = function () {
     // Set per slide footer if any defined, 
     // or show default unless data-footer="false" for no footer on this slide
     const setSlideFooter = (ev, defaultFooterDiv) => {
+      // Remove presentation footers defined by previous slides. A deck opened
+      // on a slide with its own footer gets here from both `slidechanged` and
+      // `ready` for that slide, so remove every copy, not just the first.
+      document
+        .querySelectorAll(".reveal > .footer:not(.footer-default)")
+        .forEach((footer) => footer.remove());
       const currentSlideFooter = ev.currentSlide.querySelector(".footer");
       const onDarkBackground = deck.getSlideBackground(ev.currentSlide).classList.contains('has-dark-background')
       const onLightBackground = deck.getSlideBackground(ev.currentSlide).classList.contains('has-light-background')
@@ -175,13 +181,6 @@ window.QuartoSupport = function () {
         });
         // Any new navigated new slide will get the custom footnote check
         deck.on("slidechanged", function (ev) {
-          // Remove presentation footer defined by previous slide
-          const prevSlideFooter = document.querySelector(
-            ".reveal > .footer:not(.footer-default)"
-          );
-          if (prevSlideFooter) {
-            prevSlideFooter.remove();
-          }
           // Set new one (custom, default or none)
           setSlideFooter(ev, defaultFooterDiv)
         });
