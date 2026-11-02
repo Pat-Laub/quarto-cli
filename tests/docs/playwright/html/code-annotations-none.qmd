@@ -1,0 +1,14 @@
+---
+title: "code-annotations: none"
+format: html
+code-annotations: none
+---
+
+The annotation markers are stripped, and no script that positions annotation
+highlights should run.
+
+```python
+x = 1  # <1>
+```
+
+1. An annotation that `none` hides.
