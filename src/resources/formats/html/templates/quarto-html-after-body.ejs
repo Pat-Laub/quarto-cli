@@ -547,10 +547,12 @@
     <% } %>
   
     <% if (codeAnnotations) { %>
+      // Declared even for `code-annotations: none`, which still installs the
+      // resize handler below that reads it.
+      let selectedAnnoteEl;
+
       <% if (codeAnnotations !== "none") { %>
-  
-        let selectedAnnoteEl;
-  
+
         const selectorForAnnotation = ( cell, annotation) => {
           let cellAttr = 'data-code-cell="' + cell + '"';
           let lineAttr = 'data-code-annotation="' +  annotation + '"';
