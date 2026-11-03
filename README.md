@@ -28,6 +28,20 @@ changelog entry for Quarto).
 
 ## GitHub Actions
 
+**Commit hashes.** After these runs the commits were re-authored (they had
+gone out under the wrong email address). Only the author and committer changed:
+every tree is byte-identical, so the hashes in the tables below are the ones CI
+ran on, and the branches now point at:
+
+| Branch | Test commit | Fix commit |
+|--------|-------------|------------|
+| quarto-cli `bugfix/code-annotations-none-resize` | `fa717ff` | `2e9d414` |
+| quarto-cli `bugfix/revealjs-footer-deep-link` | `071f7d4` | `5f86aca` |
+| quarto-cli `bugfix/revealjs-footer-print` | `916c172` | `4f06d36` |
+| quarto-cli `bugfix/revealjs-stretch-image-lazy-load` | `9223e39` | `57a76aa` |
+| reveal.js `fix-next-enters-stack-at-top` | `1d35320` | `27db8c8` |
+| reveal.js `fix-stretch-media-before-load` | `780d115` | `40a403e` |
+
 ### reveal.js: the fork's own `Tests` workflow (`npm test`, Node 22 and 24)
 
 `Tests` runs on every push, so each `ci/…` ref here points at an existing commit
@@ -254,9 +268,8 @@ then fix). After filling in each draft's `#ISSUE`/`#PR` placeholders:
 - quarto-cli: `https://github.com/quarto-dev/quarto-cli/compare/main...Pat-Laub:quarto-cli:<branch>?expand=1`
 - reveal.js: `https://github.com/hakimel/reveal.js/compare/master...Pat-Laub:reveal.js:<branch>?expand=1`
 
-The commits are authored as `Patrick Laub <p.laub@unsw.edu.au>`, with a
-`Co-Authored-By: Claude` trailer; amend the author if you use a different
-address on GitHub. Quarto asks for a contributor agreement only for
+The commits are authored and committed as `Patrick Laub <patrick.laub@gmail.com>`,
+with a `Co-Authored-By: Claude` trailer. Quarto asks for a contributor agreement only for
 "significant" changes, and these are all small bug fixes.
 
 The `ci/…` branches have been deleted; the run links above still work.
