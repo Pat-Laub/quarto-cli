@@ -20,6 +20,8 @@ revealjs cases) that resizes the viewport and fails on any page error. It fails
 on `main` and passes with the second commit. The other code-annotation Playwright
 specs still pass.
 
+CI on my fork, with Quarto's `test-smokes.yml`: the test-only commit [fails on exactly the new spec](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545660850) (2 tests × Chromium, Firefox, WebKit) and [the fix passes](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545664826). The full parallel smoke suite with all four of my revealjs/html fixes merged passed 41 of 42 jobs, with the 42nd cancelled ([run](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545835371)).
+
 ## Checklist
 
 I have (if applicable):

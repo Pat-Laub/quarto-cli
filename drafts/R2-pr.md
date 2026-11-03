@@ -20,7 +20,8 @@ This:
   Adding the same listener again on later layouts is a no-op.
 
 Test: new `test/test-stretch.html`, with an `r-stretch` image beyond
-`viewDistance`. It checks the image isn't collapsed to `0px` while its size is
+`viewDistance`, navigated to after the page's `load` event (reveal.js already
+lays out again on `load`, which would otherwise hide the bug). It checks the image isn't collapsed to `0px` while its size is
 unknown, and has a width and height once it has loaded. It fails on `master`
 (1/4) and passes with the fix (4/4).
 
@@ -30,3 +31,5 @@ CDN that my sandbox blocks (it fails identically without this change).
 
 I didn't add a video test: headless Chromium builds often can't decode the
 bundled `video.mp4`, which would make it flaky.
+
+CI on my fork: the test-only commit [fails on exactly `test-stretch.html`](https://github.com/Pat-Laub/reveal.js/actions/runs/41551803841) and [the fix passes](https://github.com/Pat-Laub/reveal.js/actions/runs/41551803914) (Node 22 and 24).

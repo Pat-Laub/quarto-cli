@@ -25,6 +25,8 @@ passes with the fix. The rest of the revealjs Playwright specs pass on Chromium,
 apart from the multiplex spec, which fails in my sandbox with and without this
 change.
 
+CI on my fork: [the fix passes](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545686112), and the full parallel smoke suite with all four of my revealjs/html fixes merged passed 41 of 42 jobs, with the 42nd cancelled ([run](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545835371)). <!-- TODO before opening: link a CI run of the revised test-only commit 1d86009 failing; the first version of the test passed without the fix on CI (it raced the page's load event) and was revised to wait for it -->
+
 ## Checklist
 
 I have (if applicable):

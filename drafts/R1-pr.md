@@ -54,3 +54,5 @@ first slide resets every stack:
 
 `npm test` passes (219/219 in `test.html`) and `tsc --noEmit` is clean.
 `dist/` is not rebuilt.
+
+CI on my fork: the test-only commit [fails on exactly the new tests](https://github.com/Pat-Laub/reveal.js/actions/runs/41549564570) and [the fix passes](https://github.com/Pat-Laub/reveal.js/actions/runs/41549564536) (Node 22 and 24).

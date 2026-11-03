@@ -23,6 +23,8 @@ tests fail on `main` and pass with the fix. The existing footer tests in
 Playwright specs pass on Chromium. The multiplex spec fails in my sandbox with
 and without this change; it needs the multiplex server.
 
+CI on my fork, with Quarto's `test-smokes.yml`: the test-only commit [fails on exactly the new spec](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545668806) (2 tests × Chromium, Firefox, WebKit) and [the fix passes](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545671487). The full parallel smoke suite with all four of my revealjs/html fixes merged passed 41 of 42 jobs, with the 42nd cancelled ([run](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545835371)).
+
 ## Checklist
 
 I have (if applicable):

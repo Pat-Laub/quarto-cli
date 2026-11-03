@@ -27,6 +27,8 @@ Test: `revealjs-footer-print.spec.ts` checks the four pages of the existing
 fix. I also checked a real `page.pdf()` export of the reproduction: each page now
 carries the expected footer once, bottom-centred.
 
+CI on my fork, with Quarto's `test-smokes.yml`: the test-only commit [fails on exactly the new spec](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545676028) (Chromium, Firefox, WebKit) and [the fix passes](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545678090). The full parallel smoke suite with all four of my revealjs/html fixes merged passed 41 of 42 jobs, with the 42nd cancelled ([run](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545835371)).
+
 ## Checklist
 
 I have (if applicable):

@@ -36,17 +36,51 @@ and adds nothing.
 | Ref | Commit | Result |
 |-----|--------|--------|
 | `ci/baseline` (= `master`) | `e240e17` | ✅ [success](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652078) |
-| `ci/test-only/fix-next-enters-stack-at-top` | `6adb066` (test only) | ❌ [failure](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652018): only `Reveal.next enters a vertical stack at its top` (2 of 2 assertions); 422/424 |
-| `ci/fixed/fix-next-enters-stack-at-top` | `5f044bb` | ✅ [success](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652237) |
-| `ci/test-only/fix-stretch-media-before-load` | `94003d3` (test only) | ❌ [failure](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652313): only `test-stretch.html` (3 of 4 assertions); 421/424 |
-| `fix-stretch-media-before-load` | `a68e27f` | ✅ [success](https://github.com/Pat-Laub/reveal.js/actions/runs/41547763426) |
+| `ci/test-only/fix-next-enters-stack-at-top` | `27f62c8` (tests only) | ❌ [failure](https://github.com/Pat-Laub/reveal.js/actions/runs/41549564570): only the new `Reveal.next` tests |
+| `fix-next-enters-stack-at-top` | `b601d53` | ✅ [success](https://github.com/Pat-Laub/reveal.js/actions/runs/41549564536) |
+| `ci/test-only/fix-stretch-media-before-load` | `f681248` (test only) | ❌ [failure](https://github.com/Pat-Laub/reveal.js/actions/runs/41551803841): only `test-stretch.html` |
+| `fix-stretch-media-before-load` | `6beecd0` | ✅ [success](https://github.com/Pat-Laub/reveal.js/actions/runs/41551803914) |
 
-`test-mathjax4.html`, which failed in the sandbox for lack of CDN access, passes on
-GitHub (11/11).
+`test-mathjax4.html`, which fails in the sandbox for lack of CDN access, passes on
+GitHub (11/11). Earlier runs of both branches (before the speaker-view test and
+before the stretch test waited for the page's `load` event) behaved the same way:
+[next() test-only ❌](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652018), [next() fixed ✅](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652237),
+[stretch test-only ❌](https://github.com/Pat-Laub/reveal.js/actions/runs/41547652313), [stretch fixed ✅](https://github.com/Pat-Laub/reveal.js/actions/runs/41547763426).
 
-### quarto-cli
+### quarto-cli: Quarto's own `test-smokes.yml`, called by `fork-ci.yml` on `ci/**` pushes
 
-*Runs in progress; this section is updated when they finish.*
+Each `ci/…` branch is the fix branch (or its first, test-only commit) plus one
+CI-only commit adding `.github/workflows/fork-ci.yml`. Upstream runs these smoke
+tests only for `main` and pull requests. The Playwright runs use Quarto's
+`integration/playwright-tests.test.ts` (Chromium, Firefox and WebKit on Ubuntu,
+about 1,455 tests).
+
+| Fix | Test only | With fix |
+|-----|-----------|----------|
+| none (`main`, baseline) | | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545627268) |
+| `code-annotations-none-resize` | ❌ [failure](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545660850): only `code-annotations-none.spec.ts` (2 tests × 3 browsers); 1451 passed | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545664826) |
+| `revealjs-footer-deep-link` | ❌ [failure](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545668806): only `revealjs-footer.spec.ts` (2 tests × 3 browsers); 1451 passed | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545671487) |
+| `revealjs-footer-print` | ❌ [failure](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545676028): only `revealjs-footer-print.spec.ts` (1 test × 3 browsers); 1451 passed | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545678090) |
+| `revealjs-stretch-image-lazy-load`, first version of the test | ⚠️ [passed](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545682263) without the fix | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545686112) |
+| `revealjs-stretch-image-lazy-load`, current (`1d86009` / `088a595`) | not run yet, see below | not run yet |
+
+**The stretch test's first version raced.** reveal.js also re-runs layout on the
+window's `load` event, which waits for any image that has started loading. The
+test followed the link as soon as `Reveal.isReady()`, and on CI the page was
+still loading, so the image loaded within the page load and got sized anyway. The
+current test waits for `document.readyState === "complete"` first, as a reader
+following a link would. Locally it fails without the fix (height 0) and passes
+with it. Pushes of the rebuilt branches (`ci/pw/…` and `ci/pw2/…`) after 00:15
+UTC did not start any workflow run on the fork.
+
+**Full parallel smoke suite** (20 buckets × Ubuntu and Windows), as upstream runs
+for a PR:
+
+- [all four fixes merged](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545835371): 41 of 42 jobs passed; Windows bucket 20 was cancelled mid-run;
+- [`main` baseline](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545831444): 16 passed, 26 cancelled mid-run.
+
+Both cancellations came at 00:15–00:16 UTC, every in-progress job within the same
+second, as from a manual cancel. They were not test failures.
 
 ## Priority list and reasoning
 
