@@ -62,25 +62,35 @@ about 1,455 tests).
 | `revealjs-footer-deep-link` | ❌ [failure](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545668806): only `revealjs-footer.spec.ts` (2 tests × 3 browsers); 1451 passed | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545671487) |
 | `revealjs-footer-print` | ❌ [failure](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545676028): only `revealjs-footer-print.spec.ts` (1 test × 3 browsers); 1451 passed | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545678090) |
 | `revealjs-stretch-image-lazy-load`, first version of the test | ⚠️ [passed](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545682263) without the fix | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545686112) |
-| `revealjs-stretch-image-lazy-load`, current (`1d86009` / `088a595`) | not run yet, see below | not run yet |
+| … second version (waits for the page's `load`) | ⚠️ [passed](https://github.com/Pat-Laub/quarto-cli/actions/runs/41557405843) without the fix | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41557406125) |
+| … current (`6f72f0d` / `9236737`; fixture without the math plugin) | [running](https://github.com/Pat-Laub/quarto-cli/actions/runs/41562276346) | [running](https://github.com/Pat-Laub/quarto-cli/actions/runs/41562276258) |
 
-**The stretch test's first version raced.** reveal.js also re-runs layout on the
-window's `load` event, which waits for any image that has started loading. The
-test followed the link as soon as `Reveal.isReady()`, and on CI the page was
-still loading, so the image loaded within the page load and got sized anyway. The
-current test waits for `document.readyState === "complete"` first, as a reader
-following a link would. Locally it fails without the fix (height 0) and passes
-with it. Pushes of the rebuilt branches (`ci/pw/…` and `ci/pw2/…`) after 00:15
-UTC did not start any workflow run on the fork.
+**The stretch test kept passing without the fix on CI.** reveal.js 5.1.0 lays a
+slide out synchronously inside `slide()`, just after the lazy `src` is set, so
+the bug shows only if nothing lays the slides out again once the image has
+loaded. Two things in a fresh CI page do:
+
+1. reveal.js's own layout on the window's `load` event. The second version of
+   the test waits for that before following the link.
+2. reveal's math plugin. Pandoc's revealjs template includes it whenever the
+   math method is MathJax, which is Quarto's revealjs default, and the plugin
+   calls `deck.layout()` once MathJax has loaded from jsDelivr. On GitHub that
+   lands a few seconds after page load, so right after the test's jump. In my
+   sandbox jsDelivr is blocked, MathJax never loads, and the bug always showed.
+   The current fixture sets `html-math-method: plain` (it has no math).
+
+A reader jumps long after both have happened, so they still hit the bug; this
+was only the test's timing.
 
 **Full parallel smoke suite** (20 buckets × Ubuntu and Windows), as upstream runs
 for a PR:
 
-- [all four fixes merged](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545835371): 41 of 42 jobs passed; Windows bucket 20 was cancelled mid-run;
-- [`main` baseline](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545831444): 16 passed, 26 cancelled mid-run.
+- [all four fixes merged](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545835371): **all 42 jobs passed**. Windows bucket 20 was cancelled during attempt 1 and passed on re-run (attempt 2);
+- [`main` baseline](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545831444): 16 passed, 26 cancelled mid-run, not re-run, since the combined run had no failures to attribute.
 
-Both cancellations came at 00:15–00:16 UTC, every in-progress job within the same
-second, as from a manual cancel. They were not test failures.
+The cancellations at 00:15–00:16 UTC came from GitHub disabling workflows on the
+fork ("to reduce the amount of compute that is wasted"). After it was re-enabled,
+only `Fork CI` was left enabled on the fork.
 
 ## Priority list and reasoning
 
