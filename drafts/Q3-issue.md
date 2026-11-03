@@ -23,6 +23,12 @@ all the per-slide logic is behind `if (!isPrintView())`. In print view, the only
 footer left is the default one, moved to `.reveal`, and it is `position: fixed`
 (`footer.css`), so the browser repeats it on every printed page.
 
+The PDFs of my ACTL3143 lecture slides ([pat-laub.github.io/DeepLearningForActuaries](https://pat-laub.github.io/DeepLearningForActuaries/)) have been
+printed since July 2026 by a script that copies the right footer onto each page
+after `pdf-ready`, to work around this.
+<!-- DRAFT NOTE: dates from DeepLearningForActuaries c927088 (7 Jul 2026, placeFooters() in scripts/print_slides_pdfs.py);
+     the published lecture PDFs were regenerated with it the same day (f182f49). -->
+
 ### Steps to reproduce
 
 ````qmd

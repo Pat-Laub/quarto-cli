@@ -26,6 +26,26 @@ Each branch is two commits on top of upstream (quarto-cli `main` at `3190292c7`,
 reveal.js `master` at `e240e17`): the failing test, then the fix (with a
 changelog entry for Quarto).
 
+## How long each workaround has been in your courses
+
+The first commit that added each workaround to a course's sources, for the "I've
+been relying on this for N months" line in the issues. ACTL3142 never needed any
+of them; every match in its history is Quarto's own rendered output. ACTL2131
+uses slide-stage, but this session can't see that repository, so its dates are
+missing.
+
+| # | Bug | First in a course | Since | Notes |
+|---|-----|-------------------|-------|-------|
+| 3 | `selectedAnnoteEl` with `code-annotations: none` | ACTL3143 (DeepLearningForActuaries) `c251499`, `_quarto.yml` `include-before-body` | **14 Jul 2024** (~2 years 4 months) | Still there (moved to `reveal-fixes.html` on 3 Jul 2026). Quarto's template on 9 Jul 2024 already declared it only for `!== "none"` |
+| 2 | `next()` re-enters a visited stack mid-way | ACTL3143 `8c2b689`, "Fix the navigation bug of revealjs remembering depth in stack" | **1 Jul 2026** (~4 months) | In the published decks the same day (`fd180da`); slide-stage since its first commit, 3 Sep 2026 |
+| 5 | Footers in print/PDF view | ACTL3143 `c927088`, `placeFooters()` in `scripts/print_slides_pdfs.py` | **7 Jul 2026** (~4 months) | The published lecture PDFs were regenerated with it the same day (`f182f49`) |
+| 4 | Per-slide footer clone leaks after a deep link | slide-stage `44404a8` (release 0.8.19) | 2 Nov 2026 (1 day) | Not in ACTL3143 or ACTL3142 |
+| 1, 1b | Lazy-loaded `r-stretch` image stays at 0 px | slide-stage `8c2fc4d` (release 0.8.18) | 2 Nov 2026 (1 day) | Not in ACTL3143 or ACTL3142 |
+
+The issue drafts now say this, each with a `DRAFT NOTE` giving the commit. For 4
+and 1/1b they only say you hit it in your slides, and leave the course and date to
+you.
+
 ## GitHub Actions
 
 **Commit hashes.** After these runs the commits were re-authored (they had

@@ -52,6 +52,11 @@ This is easy to hit in Quarto presentations, which default to
 into a vertical stack. Jumping around with the slide menu, a table of contents or
 an internal link, then stepping forward, silently skips the start of a section.
 
+I've worked around it in my lecture slides for UNSW's ACTL3143 course
+([pat-laub.github.io/DeepLearningForActuaries](https://pat-laub.github.io/DeepLearningForActuaries/)) since July 2026, by removing `data-previous-indexv`
+after every slide change.
+<!-- DRAFT NOTE: dates from DeepLearningForActuaries 8c2b689 (1 Jul 2026); the published decks picked it up the same day (fd180da). -->
+
 Reproduced on reveal.js `master` (e240e17: the attached page, and a QUnit test in the
 linked PR) and on 5.1.0 (as bundled by Quarto 1.12), with Chrome for Testing 153 on
 Linux.

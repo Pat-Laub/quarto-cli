@@ -29,4 +29,8 @@ Minimal case:
 The image never becomes visible. Quarto presentations hit this a lot: Quarto marks
 a lone image on a slide `r-stretch`, and Pandoc emits slide images with `data-src`.
 
+I hit this in my lecture slides and patch around it there.
+<!-- DRAFT NOTE: the slide-stage workaround is only from 2 Nov 2026 (slide-stage 8c2fc4d); add the course and date
+     yourself, or delete this line. -->
+
 PR: #PR

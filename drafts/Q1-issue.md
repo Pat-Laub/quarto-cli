@@ -22,6 +22,11 @@ The resize handler that repositions a selected annotation's highlight is emitted
 for any truthy `codeAnnotations`, `none` included, but `let selectedAnnoteEl;`
 is declared only inside the `codeAnnotations !== "none"` branch.
 
+I've had to work around this in my lecture slides for UNSW's ACTL3143 course
+([pat-laub.github.io/DeepLearningForActuaries](https://pat-laub.github.io/DeepLearningForActuaries/)) since July 2024, by declaring `let selectedAnnoteEl;` in
+`include-before-body`. I first saw the error when exporting them to PDF.
+<!-- DRAFT NOTE: dates from DeepLearningForActuaries c251499 (14 Jul 2024), still in reveal-fixes.html today. -->
+
 ### Steps to reproduce
 
 ````qmd

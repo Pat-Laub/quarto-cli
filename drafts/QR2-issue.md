@@ -30,6 +30,11 @@ view. That is reveal.js's scroll view, which Quarto switches to on narrow
 screens. There the re-run layout itself sizes the image to 0 × 0, so the fix
 for this issue does not help it (checked at a 412 × 915 viewport).
 
+I hit this in my lecture slides and patch around it there.
+<!-- DRAFT NOTE: the slide-stage workaround is only from 2 Nov 2026 (slide-stage 8c2fc4d, release 0.8.18), so
+     there is no "for months" claim to make here. ACTL2131 uses slide-stage, but I can't see ACTL2131 from this
+     session; add the course and date yourself, or delete this paragraph. -->
+
 ### Steps to reproduce
 
 ````qmd
