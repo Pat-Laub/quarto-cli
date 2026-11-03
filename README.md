@@ -261,15 +261,47 @@ The `tools/` scripts hard-code the sandbox paths they were written in
 
 ## Opening the PRs once you've reviewed them
 
-The `bugfix/…` and `fix-…` branches are exactly what would go upstream: each
-is based on upstream `main`/`master` and contains only the two commits (test,
-then fix). After filling in each draft's `#ISSUE`/`#PR` placeholders:
+The `bugfix/…` and `fix-…` branches are exactly what would go upstream. Each one
+contains only its two commits (test, then fix) on top of the current upstream:
+quarto-cli `main` at `3190292c7` and reveal.js `master` at `e240e17`. Both were
+re-checked on 3 Nov 2026 with no newer upstream commits, and the forks' default
+branches match them.
+
+All four Quarto bugs also reproduce on the latest stable release (1.11.9), not
+only on 1.12.0 and `main`.
+
+After filling in each draft's `#ISSUE`/`#PR` placeholders:
 
 - quarto-cli: `https://github.com/quarto-dev/quarto-cli/compare/main...Pat-Laub:quarto-cli:<branch>?expand=1`
 - reveal.js: `https://github.com/hakimel/reveal.js/compare/master...Pat-Laub:reveal.js:<branch>?expand=1`
 
 The commits are authored and committed as `Patrick Laub <patrick.laub@gmail.com>`,
-with a `Co-Authored-By: Claude` trailer. Quarto asks for a contributor agreement only for
-"significant" changes, and these are all small bug fixes.
+with a `Co-Authored-By: Claude` trailer.
+
+### Current contribution rules these drafts follow
+
+**quarto-cli** (`.github/CONTRIBUTING.md`, PR template, bug form and Code of
+Conduct on `main`):
+
+- **Issues:** the bug form's sections, in order:
+  - an "I have:" checklist (searched for duplicates, latest version, Bug Reports guide);
+  - bug description, steps to reproduce, *actual* then *expected* behaviour;
+  - environment, and the required `quarto check` output.
+- **PRs:** the template's Description and Checklist:
+  - linked issue, changelog entry, test suite passing, new tests;
+  - a docs PR if documented behaviour changes, which none of these do.
+- **No contributor agreement** is asked for any more.
+- **AI-assisted contributions are welcome**, but only once a human has reviewed,
+  tested and verified them. Each PR draft therefore includes the template's
+  "AI-assisted PR" section: tool, codebase grounding, human review. The
+  human-review line is yours to confirm.
+- **The Code of Conduct** also rules out posting unverified AI output, and bans
+  autonomous agents opening issues or PRs. Nothing here has been or will be
+  filed by me.
+
+**reveal.js** (`.github/CONTRIBUTING.md`): the issue tracker is for bug reports
+only, which should give browser, OS, steps and a sample presentation. PRs come
+from a topic branch and follow the file's style (tabs, single quotes). There is
+no AI policy; the PR drafts end with an optional one-line disclosure.
 
 The `ci/…` branches have been deleted; the run links above still work.

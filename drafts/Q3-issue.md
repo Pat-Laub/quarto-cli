@@ -1,5 +1,13 @@
-<!-- quarto-dev/quarto-cli — Bug report (DRAFT, not filed) -->
+<!-- quarto-dev/quarto-cli — Bug report form (DRAFT, not filed). Sections follow the current form.
+     Before filing: check every statement yourself (the Code of Conduct rules out posting unverified AI output),
+     run `quarto check` on your machine, and tick the boxes only if they are true for you. -->
 # revealjs PDF export prints the default footer on every page, ignoring per-slide footers and `footer=false`
+
+### I have:
+
+- [ ] searched the issue tracker for similar issues <!-- DRAFT NOTE: I searched "footer revealjs pdf print", "footer=false print-pdf"; no match -->
+- [ ] installed the latest version of [Quarto CLI](https://github.com/quarto-dev/quarto-cli/releases/latest) <!-- DRAFT NOTE: reproduced on 1.11.9 and 1.12.0 -->
+- [ ] formatted my issue following the [Bug Reports guide](https://quarto.org/bug-reports.html)
 
 ### Bug description
 
@@ -39,11 +47,6 @@ Slide's own footer
 1. Render, open `index.html?print-pdf`, and print to PDF (or use Chrome headless
    `--print-to-pdf`).
 
-### Expected behavior
-
-The same footers as in the presentation: "Deck-wide footer" on the title page and
-on page 2, "Slide's own footer" on page 3, none on page 4.
-
 ### Actual behavior
 
 Text extracted from the printed PDF:
@@ -55,9 +58,14 @@ page 3: Has its own footer / Deck-wide footer
 page 4: Turns the footer off / Deck-wide footer
 ```
 
+### Expected behavior
+
+The same footers as in the presentation: "Deck-wide footer" on the title page and
+on page 2, "Slide's own footer" on page 3, none on page 4.
+
 ### Your environment
 
-- Quarto 1.12.0; `support.js` is unchanged on `main` (3190292c7)
+- Quarto 1.11.9 (latest release) and 1.12.0 (latest pre-release); the relevant code is unchanged on `main` (3190292c7)
 - Chrome for Testing 153 on Linux (Playwright `page.pdf()`)
 
 ### Quarto check output

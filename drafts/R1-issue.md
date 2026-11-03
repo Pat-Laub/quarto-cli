@@ -1,4 +1,5 @@
-<!-- hakimel/reveal.js — Bug report (DRAFT, not filed) -->
+<!-- hakimel/reveal.js — Bug report (DRAFT, not filed)
+     Before posting: check every statement yourself. -->
 # Stepping forward with `next()` skips slides at the top of a previously visited vertical stack
 
 Moving forward with `Reveal.next()` into a vertical stack you have visited before

@@ -52,7 +52,9 @@ first slide resets every stack:
 - `Reveal.next enters a vertical stack at its data-start-indexv`;
 - `Reveal.right resumes a vertical stack where it was left`, which pins the behaviour this keeps.
 
-`npm test` passes (219/219 in `test.html`) and `tsc --noEmit` is clean.
-`dist/` is not rebuilt.
+`npm test` passes and `tsc --noEmit` is clean. `dist/` is not rebuilt.
 
 CI on my fork: the test-only commit [fails on exactly the new tests](https://github.com/Pat-Laub/reveal.js/actions/runs/41549564570) and [the fix passes](https://github.com/Pat-Laub/reveal.js/actions/runs/41549564536) (Node 22 and 24).
+
+This was prepared with the help of Claude Code; I have reviewed and tested it before opening this PR.
+<!-- DRAFT NOTE: reveal.js has no stated AI policy; this disclosure is optional, but keep it only once it is true. -->

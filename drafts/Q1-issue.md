@@ -1,5 +1,13 @@
-<!-- quarto-dev/quarto-cli — Bug report (DRAFT, not filed) -->
+<!-- quarto-dev/quarto-cli — Bug report form (DRAFT, not filed). Sections follow the current form.
+     Before filing: check every statement yourself (the Code of Conduct rules out posting unverified AI output),
+     run `quarto check` on your machine, and tick the boxes only if they are true for you. -->
 # `code-annotations: none` throws `ReferenceError: selectedAnnoteEl is not defined` on every window resize
+
+### I have:
+
+- [ ] searched the issue tracker for similar issues <!-- DRAFT NOTE: I searched "selectedAnnoteEl", "code-annotations none error"; no match -->
+- [ ] installed the latest version of [Quarto CLI](https://github.com/quarto-dev/quarto-cli/releases/latest) <!-- DRAFT NOTE: reproduced on 1.11.9 and 1.12.0 -->
+- [ ] formatted my issue following the [Bug Reports guide](https://quarto.org/bug-reports.html)
 
 ### Bug description
 
@@ -34,10 +42,6 @@ x = 1  # <1>
 1. Render it and open the output in a browser with the developer console open.
 2. Resize the window.
 
-### Expected behavior
-
-No errors.
-
 ### Actual behavior
 
 ```
@@ -46,9 +50,13 @@ Uncaught ReferenceError: selectedAnnoteEl is not defined
 
 logged twice per resize.
 
+### Expected behavior
+
+No errors.
+
 ### Your environment
 
-- Quarto 1.12.0; the template is unchanged on `main` (3190292c7)
+- Quarto 1.11.9 (latest release) and 1.12.0 (latest pre-release); the relevant code is unchanged on `main` (3190292c7)
 - Chrome for Testing 153 on Linux (Playwright). The error comes from template JavaScript, so it should not depend on the browser.
 
 ### Quarto check output

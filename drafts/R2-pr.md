@@ -25,11 +25,12 @@ lays out again on `load`, which would otherwise hide the bug). It checks the ima
 unknown, and has a width and height once it has loaded. It fails on `master`
 (1/4) and passes with the fix (4/4).
 
-`npm test`: all pass apart from `test-mathjax4.html`, which loads MathJax from a
-CDN that my sandbox blocks (it fails identically without this change).
-`tsc --noEmit` is clean. `dist/` is not rebuilt.
+`npm test` passes and `tsc --noEmit` is clean. `dist/` is not rebuilt.
 
 I didn't add a video test: headless Chromium builds often can't decode the
 bundled `video.mp4`, which would make it flaky.
 
 CI on my fork: the test-only commit [fails on exactly `test-stretch.html`](https://github.com/Pat-Laub/reveal.js/actions/runs/41551803841) and [the fix passes](https://github.com/Pat-Laub/reveal.js/actions/runs/41551803914) (Node 22 and 24).
+
+This was prepared with the help of Claude Code; I have reviewed and tested it before opening this PR.
+<!-- DRAFT NOTE: reveal.js has no stated AI policy; this disclosure is optional, but keep it only once it is true. -->
