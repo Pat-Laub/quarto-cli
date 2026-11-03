@@ -25,7 +25,7 @@ clones are appended. The `slidechanged` handler removes only the first
 slide change.
 
 I hit this in my lecture slides and patch around it there.
-<!-- DRAFT NOTE: the slide-stage workaround is only from 2 Nov 2026 (slide-stage 44404a8, release 0.8.19), so
+<!-- DRAFT NOTE: the slide-stage workaround is only from 2 Nov 2026 (slide-stage b770f68, release 0.8.19), so
      there is no "for months" claim to make here. ACTL2131 uses slide-stage, but I can't see ACTL2131 from this
      session; add the course and date yourself, or delete this paragraph. -->
 
