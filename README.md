@@ -63,7 +63,7 @@ about 1,455 tests).
 | `revealjs-footer-print` | ❌ [failure](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545676028): only `revealjs-footer-print.spec.ts` (1 test × 3 browsers); 1451 passed | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545678090) |
 | `revealjs-stretch-image-lazy-load`, first version of the test | ⚠️ [passed](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545682263) without the fix | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41545686112) |
 | … second version (waits for the page's `load`) | ⚠️ [passed](https://github.com/Pat-Laub/quarto-cli/actions/runs/41557405843) without the fix | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41557406125) |
-| … current (`6f72f0d` / `9236737`; fixture without the math plugin) | [running](https://github.com/Pat-Laub/quarto-cli/actions/runs/41562276346) | [running](https://github.com/Pat-Laub/quarto-cli/actions/runs/41562276258) |
+| … current (`6f72f0d` / `9236737`; fixture without the math plugin) | ❌ [failure](https://github.com/Pat-Laub/quarto-cli/actions/runs/41562276346): only `revealjs-stretch.spec.ts` (image height 0 in all 3 browsers); 1451 passed | ✅ [success](https://github.com/Pat-Laub/quarto-cli/actions/runs/41562276258) |
 
 **The stretch test kept passing without the fix on CI.** reveal.js 5.1.0 lays a
 slide out synchronously inside `slide()`, just after the lazy `src` is set, so
@@ -259,5 +259,4 @@ The commits are authored as `Patrick Laub <p.laub@unsw.edu.au>`, with a
 address on GitHub. Quarto asks for a contributor agreement only for
 "significant" changes, and these are all small bug fixes.
 
-The `ci/…` branches can be deleted once you're done with the runs; nothing
-else depends on them.
+The `ci/…` branches have been deleted; the run links above still work.
