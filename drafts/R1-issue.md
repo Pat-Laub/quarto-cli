@@ -11,8 +11,10 @@ at its last slide. `navigateNext()` calls `navigateRight()`, i.e.
 `slide( indexh + 1, undefined )`, and `slide()` resumes an undefined vertical
 index from the stack's `data-previous-indexv`.
 
-#3923 describes the same root cause for the speaker view's Upcoming preview; this
-is the same thing in the presentation itself.
+This is the root cause of #3831 (the speaker view's Upcoming preview shows the
+wrong slide at a stack boundary), which #3923 works around inside
+`speaker-view.html`. Here the same thing happens in the presentation itself, so
+fixing `next()` covers both.
 
 **Steps to reproduce** (any presentation with a vertical stack after a horizontal slide
 that is not the first slide):
